@@ -32,7 +32,8 @@ def perform_models(classifiers, vectorizers, X_train, X_test, y_train, y_test):
             precision, recall, f1, supp = precision_recall_fscore_support(y_test, predicteds,
                                                                           average='weighted')
             string += '. Has precision: ' + str(precision) + '. recall: ' + str(recall) + ' F1: ' + str(f1) + '\n'
-        print(string)
+        print(string + '\n')
+        string = ''
 
 
 data = pd.read_csv('../tweets.csv')
