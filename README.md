@@ -8,7 +8,7 @@
 
 ## Required background knowledge:
 
-* Is good to already have knowledge:
+Is good to already have knowledge:
  * Existing predictive models
  * Feature extraction
  * Model evaluation
