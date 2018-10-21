@@ -12,7 +12,9 @@ from sklearn.multiclass import *
 from sklearn.svm import *
 from sklearn.metrics import precision_recall_fscore_support
 import pandas as pd
+import warnings
 
+warnings.filterwarnings("ignore")
 
 def perform_models(classifiers, vectorizers, X_train, X_test, y_train, y_test):
     string = ''
@@ -23,17 +25,17 @@ def perform_models(classifiers, vectorizers, X_train, X_test, y_train, y_test):
             # train
             vectorize_text_train = vectorizer.fit_transform(X_train)
             classifier.fit(vectorize_text_train, y_train)
-            # score
+            # evaluating model
             vectorize_text_test = vectorizer.transform(X_test)
 
             predicteds = classifier.predict(vectorize_text_test)
             precision, recall, f1, supp = precision_recall_fscore_support(y_test, predicteds,
                                                                           average='weighted')
             string += '. Has precision: ' + str(precision) + '. recall: ' + str(recall) + ' F1: ' + str(f1) + '\n'
-            print(string)
+        print(string)
 
 
-data = pd.read_csv('tweets.csv')
+data = pd.read_csv('../tweets.csv')
 data = data.drop(columns='id')
 
 X_train, X_test, y_train, y_test = train_test_split(data['text'], data['type'], test_size=0.3, shuffle=True)
